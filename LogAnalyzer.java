@@ -63,4 +63,59 @@ public class LogAnalyzer
     {
         reader.printData();
     }
+    
+    /**
+     * Print the number of Accesses of a log file
+     */
+    public void numberOfAccesses() {
+        int hour = 0;
+        int totalAccesses = 0;
+        while(hour < hourCounts.length) {
+            totalAccesses += hourCounts[hour];
+            hour++;
+        }
+        if (totalAccesses != 0) {
+            System.out.println("Number of accesses: " + totalAccesses);
+        }
+        else {
+            System.out.println("Error");
+        }
+    }
+    
+    /**
+     * returns the hour with more number of accesses
+     */
+    public void busiestHour() {
+        int hour = 0;
+        int busiestHour = 0;
+        String theBusiestHour = "";
+        while(hour < hourCounts.length) {
+            if (hourCounts[hour] > busiestHour) {
+                busiestHour = hourCounts[hour];
+                theBusiestHour = hour + " : " + busiestHour;
+            }
+            hour++;
+        }
+        System.out.println(theBusiestHour);
+    }
+    
+    /**
+     * 
+     */
+    public void quietestHour() {
+        int hour = 0;
+        int quietestHour = hourCounts[hour];
+        String theQuietestHour = "";
+        while(hour < hourCounts.length) {
+            if (hourCounts[hour] < quietestHour) {
+                quietestHour = hourCounts[hour];
+                theQuietestHour = hour + " : " + quietestHour;
+            }
+            hour++;
+        }
+        System.out.println(theQuietestHour);
+    }
+    
+    
+    
 }
