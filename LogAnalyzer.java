@@ -23,10 +23,10 @@ public class LogAnalyzer
         // Create the reader to obtain the data.
         reader = new LogfileReader();
     }
-    
+
     public LogAnalyzer(String logName) {
-         hourCounts = new int[24];
-         reader = new LogfileReader(logName);
+        hourCounts = new int[24];
+        reader = new LogfileReader(logName);
     }
 
     /**
@@ -55,7 +55,7 @@ public class LogAnalyzer
             hour++;
         }
     }
-    
+
     /**
      * Print the lines of data read by the LogfileReader
      */
@@ -63,7 +63,7 @@ public class LogAnalyzer
     {
         reader.printData();
     }
-    
+
     /**
      * Print the number of Accesses of a log file
      */
@@ -81,7 +81,7 @@ public class LogAnalyzer
             System.out.println("Error");
         }
     }
-    
+
     /**
      * returns the hour with more number of accesses
      */
@@ -98,9 +98,9 @@ public class LogAnalyzer
         }
         System.out.println(theBusiestHour);
     }
-    
+
     /**
-     * 
+     * returns the hour with less number of accesses
      */
     public void quietestHour() {
         int hour = 0;
@@ -115,7 +115,27 @@ public class LogAnalyzer
         }
         System.out.println(theQuietestHour);
     }
-    
-    
+
+    /**
+     * 
+     */
+    public void busiestTwoHours() {
+        int hour = 0;
+        int hour2 = 1;
+        int busiestHours = 0;
+        int twoHoursAccesses = (hourCounts[hour]) + (hourCounts[hour2]);
+        String theBusiestHours = ""; 
+        while(hour2 < hourCounts.length) {
+            twoHoursAccesses = (hourCounts[hour]) + (hourCounts[hour2]);
+            if (twoHoursAccesses > busiestHours) {
+                busiestHours = twoHoursAccesses;
+                theBusiestHours = hour + "/" + hour2;
+            }
+            hour++;
+            hour2++;
+        }
+        System.out.println(theBusiestHours);
+    }
+
     
 }
