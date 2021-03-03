@@ -122,13 +122,11 @@ public class LogAnalyzer
     public void busiestTwoHours() {
         int hour = 0;
         int hour2 = 1;
-        int busiestHours = 0;
-        int twoHoursAccesses = (hourCounts[hour]) + (hourCounts[hour2]);
+        int busiestHours = (hourCounts[hour]) + (hourCounts[hour2]);
         String theBusiestHours = ""; 
         while(hour2 < hourCounts.length) {
-            twoHoursAccesses = (hourCounts[hour]) + (hourCounts[hour2]);
-            if (twoHoursAccesses > busiestHours) {
-                busiestHours = twoHoursAccesses;
+            if ((hourCounts[hour]) + (hourCounts[hour2]) > busiestHours) {
+                busiestHours = (hourCounts[hour]) + (hourCounts[hour2]);
                 theBusiestHours = hour + "/" + hour2;
             }
             hour++;
