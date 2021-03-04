@@ -9,6 +9,7 @@ public class LogAnalyzer
 {
     // Where to calculate the hourly access counts.
     private int[] hourCounts;
+    private int[] dayCounts;
     // Use a LogfileReader to access the data.
     private LogfileReader reader;
 
@@ -20,6 +21,7 @@ public class LogAnalyzer
         // Create the array object to hold the hourly
         // access counts.
         hourCounts = new int[24];
+        dayCounts = new int[32];
         // Create the reader to obtain the data.
         reader = new LogfileReader();
     }
@@ -133,5 +135,44 @@ public class LogAnalyzer
         System.out.println(theBusiestHours);
     }
 
+    /** 
+     * Analyze the hourly accesses in the given date
+     *
+     * @param day   The given day
+     * @param month The given month
+     * @param year  The given year+
+     *
+     */
+    public void analyzeHourlyAccsses(int day, int month, int year) {
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            if (year == entry.getYear()) {
+                if (month == entry.getMonth()) {
+                    if (day == entry.getDay()) {
+                        int hour = entry.getHour();
+                        hourCounts[hour]++;
+                    }
+                }
+            }
+        }
+    }
+
+    public void analyzeDailyData()
+    {
+        while(reader.hasNext()) {
+            LogEntry entry = reader.next();
+            int day = entry.getDay();
+            dayCounts[day]++;
+        }
+    }
     
+    public void printDailyCounts()
+    {
+        System.out.println("Day: Count");
+        int day = 1;
+        while(day < dayCounts.length) {
+            System.out.println(day + ": " + dayCounts[day]);
+            day++;
+        }
+    }
 }
