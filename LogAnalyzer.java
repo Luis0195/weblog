@@ -175,4 +175,26 @@ public class LogAnalyzer
             day++;
         }
     }
+    
+    public void bestAndWorstDays() {
+        int day = 1;
+        int busiestDay = 0;
+        int quietestDay = dayCounts[day];
+        String theBusiestDay = "";
+        String theQuietestDay = "";
+        while(day < dayCounts.length) {
+            if (dayCounts[day] > busiestDay) {
+                busiestDay = dayCounts[day];
+                theBusiestDay = day + " : " + busiestDay;
+            }
+            if (dayCounts[day] < quietestDay) {
+                quietestDay = dayCounts[day];
+                theQuietestDay = day + " : " + quietestDay;
+            }
+            day++;
+        }
+        System.out.println("The day with more acceses: " + theBusiestDay);
+        System.out.println("The day with less acceses: " + theQuietestDay);
+    }
+    
 }
